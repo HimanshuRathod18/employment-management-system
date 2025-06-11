@@ -6,4 +6,8 @@ const StyledTextField = styled(TextField)`
   min-width: 150px;
 `;
 
-export { StyledTextField };
+const ModalDebugger = styled.div`
+  z-index: 9999 !important;
+`;
+
+export { StyledTextField, ModalDebugger };

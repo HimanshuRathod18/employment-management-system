@@ -1,6 +1,7 @@
 import Avatar from "@atlaskit/avatar";
 // import StarStarredIcon from "@atlaskit/icon/core/star-starred";
 import { token } from "@atlaskit/tokens";
+import Button from "@atlaskit/button/new";
 
 import { userDetails } from "./mock";
 
@@ -41,35 +42,41 @@ const getCommonCells = (withWidth) => [
     key: "firstName",
     content: "First Name",
     isSortable: true,
-    width: withWidth ? 10 : undefined,
+    width: withWidth ? 8 : undefined,
   },
   {
     key: "lastName",
     content: "Last Name",
     isSortable: true,
-    width: withWidth ? 10 : undefined,
+    width: withWidth ? 8 : undefined,
   },
   {
     key: "company",
     content: "Company",
     shouldTruncate: true,
-    width: withWidth ? 15 : undefined,
+    width: withWidth ? 25 : undefined,
   },
   {
     key: "blood-group",
     content: "Blood Group",
     shouldTruncate: true,
-    width: withWidth ? 5 : undefined,
+    width: withWidth ? 10 : undefined,
   },
   {
     key: "email",
     content: "Email",
     shouldTruncate: true,
-    width: withWidth ? 15 : undefined,
+    width: withWidth ? 10 : undefined,
   },
   {
     key: "number",
     content: "Phone Number",
+    shouldTruncate: true,
+    width: withWidth ? 15 : undefined,
+  },
+  {
+    key: "details",
+    content: "Details",
     shouldTruncate: true,
     width: withWidth ? 10 : undefined,
   },
@@ -107,6 +114,10 @@ const createBaseCells = (president, index) => [
   {
     key: president.phone,
     content: president.phone,
+  },
+  {
+    key: `${president.id}-details`,
+    content: <Button>Details</Button>,
   },
 ];
 
