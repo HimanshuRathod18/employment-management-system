@@ -10,8 +10,20 @@
     "preview": "vite preview"
   },
   "dependencies": {
-    "react": "^19.1.0",
-    "react-dom": "^19.1.0"
+    "@atlaskit/avatar": "^25.1.2",
+    "@atlaskit/button": "^23.2.2",
+    "@atlaskit/dynamic-table": "^18.2.0",
+    "@atlaskit/modal-dialog": "^14.2.6",
+    "@atlaskit/select": "^20.7.0",
+    "@atlaskit/textfield": "^8.0.6",
+    "@atlaskit/tokens": "^5.1.0",
+    "@compiled/react": "^0.18.5",
+    "axios": "^1.9.0",
+    "lodash": "^4.17.21",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "react-router-dom": "^7.6.2",
+    "styled-components": "^6.1.18"
   },
   "devDependencies": {
     "@eslint/js": "^9.25.0",
