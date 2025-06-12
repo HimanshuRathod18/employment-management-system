@@ -1,43 +1,45 @@
+import Heading from "@atlaskit/heading";
 import EmployeeDetailsModal from "../components/EmployeeDetailsModal";
+import { StyledRow } from "../components/styles";
 
 const getCommonCells = (withWidth) => [
   {
     key: "firstName",
-    content: "First Name",
+    content: <Heading size="medium">First Name</Heading>,
     width: withWidth ? 8 : undefined,
   },
   {
     key: "lastName",
-    content: "Last Name",
+    content: <Heading size="medium">Last Name</Heading>,
     width: withWidth ? 8 : undefined,
   },
   {
     key: "company",
-    content: "Company",
+    content: <Heading size="medium">Company</Heading>,
     shouldTruncate: true,
-    width: withWidth ? 25 : undefined,
+    width: withWidth ? 20 : undefined,
   },
   {
     key: "blood-group",
-    content: "Blood Group",
+    content: <Heading size="medium">Blood Group</Heading>,
     shouldTruncate: true,
     width: withWidth ? 10 : undefined,
   },
   {
     key: "email",
-    content: "Email",
+    content: <Heading size="medium">Email</Heading>,
     shouldTruncate: true,
-    width: withWidth ? 10 : undefined,
+    width: withWidth ? 20 : undefined,
   },
   {
     key: "number",
-    content: "Phone Number",
+    content: <Heading size="medium">Phone Number</Heading>,
     shouldTruncate: true,
     width: withWidth ? 15 : undefined,
   },
   {
     key: "details",
-    content: "Details",
+    content: <Heading size="medium">Details</Heading>,
     shouldTruncate: true,
     width: withWidth ? 10 : undefined,
   },
@@ -54,31 +56,41 @@ export const head = createHead(true);
 const createBaseCells = (president, index) => [
   {
     key: president.firstName,
-    content: president.firstName,
+    content: (
+      <StyledRow even={index % 2 === 0}>{president.firstName}</StyledRow>
+    ),
   },
   {
     key: president.lastName,
-    content: president.lastName,
+    content: <StyledRow even={index % 2 === 0}>{president.lastName}</StyledRow>,
   },
   {
     key: president.company.name,
-    content: president.company.name,
+    content: (
+      <StyledRow even={index % 2 === 0}>{president.company.name}</StyledRow>
+    ),
   },
   {
     key: president.bloodGroup,
-    content: president.bloodGroup,
+    content: (
+      <StyledRow even={index % 2 === 0}>{president.bloodGroup}</StyledRow>
+    ),
   },
   {
     key: president.email,
-    content: president.email,
+    content: <StyledRow even={index % 2 === 0}>{president.email}</StyledRow>,
   },
   {
     key: president.phone,
-    content: president.phone,
+    content: <StyledRow even={index % 2 === 0}>{president.phone}</StyledRow>,
   },
   {
     key: `${president.id}-details`,
-    content: <EmployeeDetailsModal employee={president} />,
+    content: (
+      <StyledRow even={index % 2 === 0}>
+        <EmployeeDetailsModal employee={president} />
+      </StyledRow>
+    ),
   },
 ];
 

@@ -3,6 +3,7 @@ import { debounce } from "lodash";
 import { useNavigate } from "react-router-dom";
 import SearchIcon from "@atlaskit/icon/glyph/search";
 import Button from "@atlaskit/button/new";
+import ChevronRightIcon from "@atlaskit/icon/core/chevron-right";
 import { useEmployees } from "../../context/EmployeeContext";
 import { fetchUsers, searchUsers } from "../../api/users";
 import EmployeeList from "../../components/EmployeeList";
@@ -106,8 +107,9 @@ const Home = () => {
           <Button
             onClick={() => navigate("/shortlisted")}
             style={{ height: "40px" }}
+            iconAfter={ChevronRightIcon}
           >
-            Go to Shortlisted Employees
+            Shortlisted Employees
           </Button>
         </div>
       </HeaderContainer>

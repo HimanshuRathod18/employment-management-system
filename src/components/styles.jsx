@@ -7,6 +7,9 @@ const SectionWrapper = styled.div`
   flex-direction: column;
 `;
 
+const StyledTableHeader = styled.div`
+fontSize: '16px', fontWeight: 600`;
+
 const SectionTitle = styled.h3`
   font-size: 1.2rem;
   color: #172b4d;
@@ -59,6 +62,11 @@ const StyledSelectWrapper = styled.div`
   width: 180px;
   min-width: 150px;
 `;
+
+const StyledRow = styled.div`
+  background-color: ${(props) => (props.even ? "#ffffff" : "#f4f5f7")};
+  padding: "8px 12px";
+`;
 export {
   SectionWrapper,
   SectionTitle,
@@ -69,4 +77,5 @@ export {
   StyledImage,
   StyledDiv,
   StyledSelectWrapper,
+  StyledRow,
 };

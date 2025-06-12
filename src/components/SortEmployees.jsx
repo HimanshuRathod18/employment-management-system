@@ -1,7 +1,19 @@
 import React, { useState, useEffect, useMemo } from "react";
-import Select from "@atlaskit/select";
+import Select, { components } from "@atlaskit/select";
+import SortDescendingIcon from "@atlaskit/icon/core/sort-descending";
 import { SORT_OPTIONS } from "../utils/constant";
 import { StyledSelectWrapper } from "./styles";
+
+const customComponents = {
+  Control: (props) => (
+    <components.Control {...props}>
+      <div style={{ paddingLeft: 8, display: "flex", alignItems: "center" }}>
+        <SortDescendingIcon label="icon" size="small" />
+      </div>
+      {props.children}
+    </components.Control>
+  ),
+};
 
 const selectStyles = {
   control: (base) => ({
@@ -59,6 +71,7 @@ const SortableUserList = ({ users, onSortChange }) => {
         placeholder="Sort by"
         isClearable={true}
         styles={selectStyles}
+        components={customComponents}
       />
     </StyledSelectWrapper>
   );
