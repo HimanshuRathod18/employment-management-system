@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import Button from "@atlaskit/button/new";
+import FilterIcon from "@atlaskit/icon/glyph/filter";
 import { Label } from "@atlaskit/form";
 import Select from "@atlaskit/select";
 import Modal, {
@@ -21,7 +22,6 @@ const FilterModal = ({ options, filterChange }) => {
     bloodGroup: null,
     university: null,
   });
-  console.log("::: localFilter", localFilters);
   const handleChange = (field, selectedOption) => {
     setLocalFilters((prev) => ({
       ...prev,
@@ -47,8 +47,8 @@ const FilterModal = ({ options, filterChange }) => {
 
   return (
     <>
-      <Button appearance="primary" onClick={openModal}>
-        Open Modal
+      <Button appearance="primary" onClick={openModal} iconAfter={FilterIcon}>
+        Filter
       </Button>
 
       <ModalTransition>

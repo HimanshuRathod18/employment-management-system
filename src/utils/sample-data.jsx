@@ -1,8 +1,7 @@
 import Avatar from "@atlaskit/avatar";
 // import StarStarredIcon from "@atlaskit/icon/core/star-starred";
 import { token } from "@atlaskit/tokens";
-import Button from "@atlaskit/button/new";
-
+import EmployeeDetailsModal from "../components/EmployeeDetailsModal";
 import { userDetails } from "./mock";
 
 //  function kebabCase(input) {
@@ -117,7 +116,7 @@ const createBaseCells = (president, index) => [
   },
   {
     key: `${president.id}-details`,
-    content: <Button>Details</Button>,
+    content: <EmployeeDetailsModal employee={president} />,
   },
 ];
 

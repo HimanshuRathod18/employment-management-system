@@ -8,9 +8,6 @@ const EmployeeList = ({ userDetails }) => {
   useEffect(() => {
     setUsers(userDetails);
   }, [userDetails]);
-  // console.log(":::", userDetails);
-
-  // console.log("::: users", users);
 
   return (
     <div>
