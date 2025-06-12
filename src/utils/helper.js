@@ -37,7 +37,6 @@ export function getTabData(employee) {
             gender: employee.gender,
             birthDate: employee.birthDate,
             university: employee.university,
-            role: employee.role,
           },
         },
         physicalStat: {

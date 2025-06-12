@@ -1,30 +1,33 @@
-import { Label } from "@atlaskit/form";
+import React from "react";
 import {
-  SectionTitle,
   Value,
-  Row,
+  Label,
+  FieldGrid,
+  FieldItem,
   SectionWrapper,
-  StyledFieldDiv,
-} from "./styles";
-import { formatLabel } from "../utils/helper";
-
+  SectionTitle,
+} from "./tabStyles";
 const RenderEmployeeSections = ({ data }) => {
   return (
-    <div>
-      {Object.entries(data).map(([key, section]) => (
-        <SectionWrapper>
-          <SectionTitle>{section.label}</SectionTitle>
-          <StyledFieldDiv>
-            {Object.entries(section.value).map(([fieldName, value]) => (
-              <Row key={fieldName}>
-                <Label>{formatLabel(fieldName)}</Label>
-                <Value>{value || "-"}</Value>
-              </Row>
+    <>
+      {Object.entries(data).map(([sectionKey, sectionObj]) => (
+        <SectionWrapper key={sectionKey}>
+          <SectionTitle>{sectionObj.label}</SectionTitle>
+          <FieldGrid>
+            {Object.entries(sectionObj.value).map(([field, val]) => (
+              <FieldItem key={field}>
+                <Label>
+                  {field
+                    .replace(/([A-Z])/g, " $1")
+                    .replace(/^./, (str) => str.toUpperCase())}
+                </Label>
+                <Value>{val || "—"}</Value>
+              </FieldItem>
             ))}
-          </StyledFieldDiv>
+          </FieldGrid>
         </SectionWrapper>
       ))}
-    </div>
+    </>
   );
 };
 

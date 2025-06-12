@@ -1,21 +1,25 @@
 import React, { Fragment, useCallback, useState } from "react";
 import Button from "@atlaskit/button/new";
+import Avatar from "@atlaskit/avatar";
 import Modal, {
   ModalBody,
   ModalFooter,
   ModalHeader,
   ModalTransition,
 } from "@atlaskit/modal-dialog";
+import Spinner from "@atlaskit/spinner";
 import EmployeeDetailsTab from "./EmployeeDetailsTab";
 import { useEmployees } from "../context/EmployeeContext";
-import { StyledImage, StyledDiv } from "./styles";
 import { DISPATCH_TYPE } from "../utils/constant";
+import { formatLabel } from "../utils/helper";
+import { HeaderWrapper } from "./styles";
 
 const EmployeeDetailsModal = ({ employee }) => {
   const { dispatch } = useEmployees();
-
   const [isOpen, setIsOpen] = useState(false);
   const [width, setWidth] = useState("large");
+  const [loading, setLoading] = useState(false);
+  const [flag, setFlag] = useState(null);
 
   const closeModal = useCallback(() => setIsOpen(false), [setIsOpen]);
   const setWidthAndOpen = useCallback(
@@ -34,7 +38,7 @@ const EmployeeDetailsModal = ({ employee }) => {
   };
   return (
     <Fragment>
-      <Button appearance="danger" onClick={() => setWidthAndOpen("large")}>
+      <Button appearance="primary" onClick={() => setWidthAndOpen("large")}>
         Details
       </Button>
 
@@ -42,14 +46,17 @@ const EmployeeDetailsModal = ({ employee }) => {
         {isOpen && (
           <Modal onClose={closeModal} width={width}>
             <ModalHeader hasCloseButton>
-              <StyledDiv>
-                <StyledImage
+              <HeaderWrapper>
+                <Avatar
+                  name={`${employee.firstName} ${employee.lastName}`}
                   src={employee.image}
-                  alt={`${employee.firstName}'s image`}
+                  size="large"
+                  appearance="circle"
                 />
-
-                {`${employee.firstName} ${employee.lastName} - Details`}
-              </StyledDiv>
+                {`${employee.firstName} ${employee.lastName} - ${formatLabel(
+                  employee.role
+                )}`}
+              </HeaderWrapper>
             </ModalHeader>
             <ModalBody>
               <EmployeeDetailsTab employeeDetails={employee} />

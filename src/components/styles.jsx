@@ -67,6 +67,13 @@ const StyledRow = styled.div`
   background-color: ${(props) => (props.even ? "#F0F4FF" : "#E2ECFD")};
   padding: 6px;
   width: 100%;
+  transition: background-color 0.2s ease, box-shadow 0.2s ease;
+
+  &:hover {
+    background-color: #d2e3fc;
+    box-shadow: 0 1px 4px rgba(9, 30, 66, 0.1);
+    cursor: default;
+  }
 `;
 
 const TableContainer = styled.div`
@@ -74,6 +81,24 @@ const TableContainer = styled.div`
   padding: 24px;
   border-radius: 8px;
   box-shadow: 0 0 4px rgba(0, 0, 0, 0.1);
+`;
+
+const HeaderWrapper = styled.div`
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  font-size: 18px;
+  font-weight: 600;
+  background-color: #e9f2ff;
+  color: #172b4d;
+  padding: 10px;
+  border-bottom: 1px solid #dfe1e6;
+  border-radius: 4px 4px 0 0;
+
+  strong {
+    font-size: 16px;
+    color: #172b4d;
+  }
 `;
 
 export {
@@ -88,4 +113,5 @@ export {
   StyledSelectWrapper,
   StyledRow,
   TableContainer,
+  HeaderWrapper,
 };
