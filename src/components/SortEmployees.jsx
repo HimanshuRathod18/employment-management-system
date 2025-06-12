@@ -1,6 +1,29 @@
 import React, { useState, useEffect, useMemo } from "react";
 import Select from "@atlaskit/select";
 import { SORT_OPTIONS } from "../utils/constant";
+import { StyledSelectWrapper } from "./styles";
+
+const selectStyles = {
+  control: (base) => ({
+    ...base,
+    minHeight: "32px",
+    height: "32px",
+  }),
+  valueContainer: (base) => ({
+    ...base,
+    height: "32px",
+    padding: "0 8px",
+  }),
+  indicatorsContainer: (base) => ({
+    ...base,
+    height: "32px",
+  }),
+  input: (base) => ({
+    ...base,
+    margin: 0,
+    padding: 0,
+  }),
+};
 
 const SortableUserList = ({ users, onSortChange }) => {
   const [sortKey, setSortKey] = useState(null);
@@ -28,15 +51,16 @@ const SortableUserList = ({ users, onSortChange }) => {
   };
 
   return (
-    <div style={{ width: "180px", marginBottom: "1rem" }}>
+    <StyledSelectWrapper>
       <Select
         options={SORT_OPTIONS}
         value={sortKey}
         onChange={handleChange}
         placeholder="Sort by"
         isClearable={true}
+        styles={selectStyles}
       />
-    </div>
+    </StyledSelectWrapper>
   );
 };
 

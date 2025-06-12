@@ -6,7 +6,12 @@ import Button from "@atlaskit/button/new";
 import { useEmployees } from "../../context/EmployeeContext";
 import { fetchUsers, searchUsers } from "../../api/users";
 import EmployeeList from "../../components/EmployeeList";
-import { StyledTextField } from "./styles";
+import {
+  HeaderContainer,
+  StyledTextField,
+  LeftGroup,
+  StyledTextInput,
+} from "./styles";
 import FilterModal from "../../components/FilterModal";
 import SortEmployees from "../../components/SortEmployees";
 import { getSelectOptions, getFilteredUsers } from "../../utils/helper";
@@ -79,26 +84,33 @@ const Home = () => {
 
   return (
     <div>
-      <div>
-        <StyledTextField
-          placeholder="Search"
-          elemBeforeInput={
-            <SearchIcon size="medium" borderColor="transparent" />
-          }
-          onChange={handleSearchChange}
-        />
+      <HeaderContainer>
+        <LeftGroup>
+          <StyledTextInput>
+            <StyledTextField
+              placeholder="Search"
+              elemBeforeInput={
+                <SearchIcon size="medium" borderColor="transparent" />
+              }
+              onChange={handleSearchChange}
+            />
+          </StyledTextInput>
 
-        <FilterModal
-          options={{ genderOptions, bloodGroupOptions, universityOptions }}
-          filterChange={handleApplyFilters}
-        />
-
-        <SortEmployees users={users} onSortChange={handleSortedUsers} />
-
-        <Button onClick={() => navigate("/shortlisted")}>
-          Go to Shortlisted Employees
-        </Button>
-      </div>
+          <FilterModal
+            options={{ genderOptions, bloodGroupOptions, universityOptions }}
+            filterChange={handleApplyFilters}
+          />
+          <SortEmployees users={users} onSortChange={handleSortedUsers} />
+        </LeftGroup>
+        <div>
+          <Button
+            onClick={() => navigate("/shortlisted")}
+            style={{ height: "40px" }}
+          >
+            Go to Shortlisted Employees
+          </Button>
+        </div>
+      </HeaderContainer>
 
       <EmployeeList userDetails={users} />
     </div>

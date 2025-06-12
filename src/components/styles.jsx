@@ -54,7 +54,11 @@ const StyledDiv = styled.div`
   display: block;
   height: 40%;
 `;
-
+const StyledSelectWrapper = styled.div`
+  height: 32px;
+  width: 180px;
+  min-width: 150px;
+`;
 export {
   SectionWrapper,
   SectionTitle,
@@ -64,4 +68,5 @@ export {
   StyledFieldDiv,
   StyledImage,
   StyledDiv,
+  StyledSelectWrapper,
 };
