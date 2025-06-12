@@ -6,7 +6,7 @@ import Button from "@atlaskit/button/new";
 import Select from "@atlaskit/select";
 import { fetchUsers, searchUsers } from "../../api/users";
 import EmployeeList from "../../components/EmployeeList";
-import { StyledTextField, ModalDebugger } from "./styles";
+import { StyledTextField } from "./styles";
 import FilterModal from "../../components/FilterModal";
 import SortEmployees from "../../components/SortEmployees";
 import { getSelectOptions, getFilteredUsers } from "../../utils/helper";
@@ -15,63 +15,67 @@ import { useNavigate } from "react-router-dom";
 const Home = () => {
   const { state, dispatch } = useEmployees();
   const { allEmployees } = state;
+
   const [users, setUsers] = useState([]);
-  const [loading, setLoading] = useState(false);
-  const [sortedUsers, setSortedUsers] = useState(allEmployees);
   const [filters, setFilters] = useState({
     gender: null,
     bloodGroup: null,
     university: null,
   });
-  // const admin = users.filter((user) => user.role === "admin");
+
+  const navigate = useNavigate();
+
   useEffect(() => {
     fetchUsers().then((data) => {
       dispatch({ type: "ALL_EMPLOYEES", payload: data });
     });
   }, []);
-  useEffect(() => {
-    setUsers(allEmployees.filter((user) => user.role !== "admin"));
-  }, [allEmployees]);
 
   useEffect(() => {
-    setSortedUsers(allEmployees);
-    console.log("::: allemp");
-  }, [allEmployees]);
-
-  let filteredUsers = [];
-  filteredUsers = getFilteredUsers(users, filters);
-  useEffect(() => {
-    setUsers(filteredUsers);
-    console.log("::: filteredUsers", filteredUsers);
-  }, [filters]);
+    const filtered = getFilteredUsers(
+      allEmployees.filter((user) => user.role !== "admin"),
+      filters
+    );
+    setUsers(filtered);
+  }, [filters, allEmployees]);
 
   const debouncedFetch = useCallback(
-    debounce((value, fetchApi) => {
-      fetchApi(value).then((data) => {
-        setUsers(data);
+    debounce((value) => {
+      searchUsers(value).then((data) => {
+        const filtered = getFilteredUsers(
+          data.filter((user) => user.role !== "admin"),
+          filters
+        );
+        setUsers(filtered);
       });
     }, 500),
-    []
+    [filters]
   );
 
-  const genderOptions = getSelectOptions(users, "gender");
-  const bloodGroupOptions = getSelectOptions(users, "bloodGroup");
-  const universityOptions = getSelectOptions(users, "university");
-
   const handleSearchChange = (e) => {
-    const {
-      target: { value },
-    } = e;
-    debouncedFetch(value, searchUsers);
+    const value = e.target.value;
+    if (value.trim()) {
+      debouncedFetch(value);
+    } else {
+      const filtered = getFilteredUsers(
+        allEmployees.filter((user) => user.role !== "admin"),
+        filters
+      );
+      setUsers(filtered);
+    }
   };
+
   const handleSortedUsers = (sortedUsers) => {
     setUsers(sortedUsers);
   };
+
   const handleApplyFilters = (newFilters) => {
     setFilters(newFilters);
-    console.log(":::Applied Filters:", newFilters);
   };
-  const navigate = useNavigate();
+
+  const genderOptions = getSelectOptions(allEmployees, "gender");
+  const bloodGroupOptions = getSelectOptions(allEmployees, "bloodGroup");
+  const universityOptions = getSelectOptions(allEmployees, "university");
 
   return (
     <div>
@@ -81,17 +85,21 @@ const Home = () => {
           elemBeforeInput={
             <SearchIcon size="medium" borderColor="transparent" />
           }
-          onChange={(e) => handleSearchChange(e)}
+          onChange={handleSearchChange}
         />
+
         <FilterModal
           options={{ genderOptions, bloodGroupOptions, universityOptions }}
           filterChange={handleApplyFilters}
         />
-        <SortEmployees users={allEmployees} onSortChange={handleSortedUsers} />
+
+        <SortEmployees users={users} onSortChange={handleSortedUsers} />
+
         <Button onClick={() => navigate("/shortlisted")}>
           Go to Shortlisted Employees
         </Button>
       </div>
+
       <EmployeeList userDetails={users} />
     </div>
   );

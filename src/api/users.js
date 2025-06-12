@@ -18,7 +18,7 @@ export async function searchUsers(params) {
   console.log("::: called search Users");
 
   console.log("::: params", params);
-  const res = await fetch(`${BASE_URL}/search?q=${params}`);
+  const res = await fetch(`${BASE_URL}/search?q=${params}&limit=${100}`);
   const data = await res.json();
   console.log("::: search users", data);
   return data.users;
