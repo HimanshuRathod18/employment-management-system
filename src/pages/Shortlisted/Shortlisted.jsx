@@ -3,7 +3,7 @@ import Button from "@atlaskit/button/new";
 import Heading from "@atlaskit/heading";
 import { useEmployees } from "../../context/EmployeeContext";
 import EmployeeList from "../../components/EmployeeList";
-import { StyledHeading } from "./styles";
+import { HeadingContainer, SubTitle } from "../Home/styles";
 
 const Shortlisted = () => {
   const navigate = useNavigate();
@@ -11,9 +11,14 @@ const Shortlisted = () => {
   const { shortlistedEmployees } = state;
   return (
     <div>
-      <StyledHeading>
-        <Heading size="large">Shortlisted Employees</Heading>
-      </StyledHeading>
+      <HeadingContainer>
+        <Heading size="xlarge" color="inverse">
+          Shortlisted Employees
+        </Heading>
+        <SubTitle>
+          {`Here is the list of shortlisted candidates, a total of ${shortlistedEmployees.length} candidates have been selected`}
+        </SubTitle>
+      </HeadingContainer>
       <EmployeeList userDetails={shortlistedEmployees} />
       <Button onClick={() => navigate("/")}>Back</Button>
     </div>

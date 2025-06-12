@@ -1,5 +1,4 @@
 import styled from "styled-components";
-import Button from "@atlaskit/button/new";
 import Textfield from "@atlaskit/textfield";
 
 const StyledTextField = styled(Textfield)`
@@ -33,4 +32,32 @@ const LeftGroup = styled.div`
   flex: 1;
 `;
 
-export { StyledTextField, HeaderContainer, LeftGroup, StyledTextInput };
+const StyledError = styled.div`
+  padding: 10px 0;
+`;
+
+const HeadingContainer = styled.header`
+  background-color: #091e42;
+  padding: 24px 32px;
+  margin-bottom: 18px;
+  color: white;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  border-bottom: 4px solid #0c66e4;
+`;
+
+const SubTitle = styled.div`
+  font-size: 14px;
+  color: #b3bac5;
+`;
+
+export {
+  StyledTextField,
+  HeaderContainer,
+  LeftGroup,
+  StyledTextInput,
+  StyledError,
+  HeadingContainer,
+  SubTitle,
+};

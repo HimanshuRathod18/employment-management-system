@@ -17,6 +17,7 @@
     "@atlaskit/form": "^12.0.7",
     "@atlaskit/heading": "^5.2.1",
     "@atlaskit/image": "^3.0.1",
+    "@atlaskit/inline-message": "^15.3.0",
     "@atlaskit/modal-dialog": "^14.2.6",
     "@atlaskit/select": "^20.7.0",
     "@atlaskit/tabs": "^18.1.2",

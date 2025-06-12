@@ -29,7 +29,7 @@ function employeeReducer(state, action) {
       return {
         ...state,
         shortlistedEmployees: state.shortlistedEmployees.filter(
-          (emp) => emp.id !== action.payload
+          (emp) => emp.id !== action.payload.id
         ),
       };
 

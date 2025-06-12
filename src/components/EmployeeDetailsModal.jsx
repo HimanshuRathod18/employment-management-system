@@ -1,4 +1,5 @@
 import React, { Fragment, useCallback, useState } from "react";
+import { useLocation } from "react-router-dom";
 import Button from "@atlaskit/button/new";
 import Avatar from "@atlaskit/avatar";
 import Modal, {
@@ -16,6 +17,9 @@ import { HeaderWrapper } from "./styles";
 
 const EmployeeDetailsModal = ({ employee }) => {
   const { dispatch } = useEmployees();
+  const location = useLocation();
+  const isShortListed = location.pathname === "/shortlisted";
+
   const [isOpen, setIsOpen] = useState(false);
   const [width, setWidth] = useState("large");
   const [loading, setLoading] = useState(false);
@@ -35,11 +39,16 @@ const EmployeeDetailsModal = ({ employee }) => {
     setFlag(false);
 
     await new Promise((resolve) => setTimeout(resolve, 1000));
-
-    dispatch({
-      type: DISPATCH_TYPE.ADD_TO_SHORTLISTED_EMPLOYEES,
-      payload: employee,
-    });
+    if (isShortListed) {
+      dispatch({
+        type: DISPATCH_TYPE.REMOVE_FROM_SHORTLIST,
+        payload: employee,
+      });
+    } else
+      dispatch({
+        type: DISPATCH_TYPE.ADD_TO_SHORTLISTED_EMPLOYEES,
+        payload: employee,
+      });
 
     setLoading(false);
     setFlag(true);
@@ -47,6 +56,28 @@ const EmployeeDetailsModal = ({ employee }) => {
       closeModal();
     }, 1000);
   };
+
+  const shortlistOrRemoveButton = loading ? (
+    <Button appearance="primary" isDisabled>
+      <Spinner size="small" />
+    </Button>
+  ) : flag && isShortListed ? (
+    <Button appearance="success" onClick={() => closeModal}>
+      Removed
+    </Button>
+  ) : flag ? (
+    <Button appearance="success" onClick={() => closeModal}>
+      Shortlisted
+    </Button>
+  ) : isShortListed ? (
+    <Button appearance="danger" onClick={handleShortList}>
+      Remove
+    </Button>
+  ) : (
+    <Button appearance="primary" onClick={handleShortList}>
+      Shortlist
+    </Button>
+  );
 
   return (
     <Fragment>
@@ -77,19 +108,7 @@ const EmployeeDetailsModal = ({ employee }) => {
               <Button appearance="subtle" onClick={closeModal}>
                 Cancel
               </Button>
-              {loading ? (
-                <Button appearance="primary" isDisabled>
-                  <Spinner size="small" />
-                </Button>
-              ) : flag ? (
-                <Button appearance="success" onClick={() => closeModal}>
-                  Shortlisted
-                </Button>
-              ) : (
-                <Button appearance="primary" onClick={handleShortList}>
-                  Shortlist
-                </Button>
-              )}
+              {shortlistOrRemoveButton}
             </ModalFooter>
           </Modal>
         )}

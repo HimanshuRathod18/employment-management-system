@@ -3,7 +3,9 @@ import { debounce } from "lodash";
 import { useNavigate } from "react-router-dom";
 import SearchIcon from "@atlaskit/icon/glyph/search";
 import Button from "@atlaskit/button/new";
+import InlineMessage from "@atlaskit/inline-message";
 import ChevronRightIcon from "@atlaskit/icon/core/chevron-right";
+import Heading from "@atlaskit/heading";
 import { useEmployees } from "../../context/EmployeeContext";
 import { fetchUsers, searchUsers } from "../../api/users";
 import EmployeeList from "../../components/EmployeeList";
@@ -12,6 +14,9 @@ import {
   StyledTextField,
   LeftGroup,
   StyledTextInput,
+  StyledError,
+  HeadingContainer,
+  SubTitle,
 } from "./styles";
 import FilterModal from "../../components/FilterModal";
 import SortEmployees from "../../components/SortEmployees";
@@ -20,7 +25,7 @@ import { DISPATCH_TYPE, USER_ROLE } from "../../utils/constant";
 
 const Home = () => {
   const { state, dispatch } = useEmployees();
-  const { allEmployees } = state;
+  const { allEmployees, shortlistedEmployees } = state;
 
   const [users, setUsers] = useState([]);
   const [filters, setFilters] = useState({
@@ -28,6 +33,7 @@ const Home = () => {
     bloodGroup: null,
     university: null,
   });
+  const [error, setError] = useState(false);
 
   const navigate = useNavigate();
 
@@ -79,12 +85,38 @@ const Home = () => {
     setFilters(newFilters);
   };
 
+  const handleNext = () => {
+    if (shortlistedEmployees.length > 0) navigate("/shortlisted");
+    else setError(true);
+  };
   const genderOptions = getSelectOptions(allEmployees, "gender");
   const bloodGroupOptions = getSelectOptions(allEmployees, "bloodGroup");
   const universityOptions = getSelectOptions(allEmployees, "university");
 
   return (
     <div>
+      <HeadingContainer>
+        <Heading size="xlarge" color="inverse">
+          Employee Management System
+        </Heading>
+        <SubTitle>
+          Easily search, view, and shortlist candidates for your team.
+        </SubTitle>
+      </HeadingContainer>
+      {error && (
+        <StyledError>
+          <InlineMessage
+            title="Error"
+            secondaryText="Please shortlist atleast one candidate"
+            appearance="error"
+          >
+            <p>
+              Shortlist at least one candidate before moving to the Shortlisted
+              employees page
+            </p>
+          </InlineMessage>
+        </StyledError>
+      )}
       <HeaderContainer>
         <LeftGroup>
           <StyledTextInput>
@@ -105,7 +137,8 @@ const Home = () => {
         </LeftGroup>
         <div>
           <Button
-            onClick={() => navigate("/shortlisted")}
+            appearance="primary"
+            onClick={handleNext}
             style={{ height: "40px" }}
             iconAfter={ChevronRightIcon}
           >
