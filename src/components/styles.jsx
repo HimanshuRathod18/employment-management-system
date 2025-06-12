@@ -62,8 +62,9 @@ const StyledSelectWrapper = styled.div`
   width: 180px;
   min-width: 150px;
 `;
-
 const StyledRow = styled.div`
+  text-wrap: auto;
+  word-break: break-all;
   background-color: ${(props) => (props.even ? "#F0F4FF" : "#E2ECFD")};
   padding: 6px;
   width: 100%;
@@ -72,7 +73,20 @@ const StyledRow = styled.div`
   &:hover {
     background-color: #d2e3fc;
     box-shadow: 0 1px 4px rgba(9, 30, 66, 0.1);
-    cursor: default;
+  }
+`;
+
+const TableScrollWrapper = styled.div`
+  width: 100%;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+
+  display: block;
+  table {
+    min-width: 1024px;
+  }
+  @media (max-width: 768px) {
+    padding-bottom: 8px; /* creates space for horizontal scroll bar */
   }
 `;
 
@@ -114,4 +128,5 @@ export {
   StyledRow,
   TableContainer,
   HeaderWrapper,
+  TableScrollWrapper,
 };

@@ -18,7 +18,7 @@ const GlobalStyle = createGlobalStyle`
   }
   
   .table-container {
-    background: #f7faff; /* ✨ soft blue tint */
+    background: #f7faff;
     border-radius: 8px;
     box-shadow: 0 1px 6px rgba(9, 30, 66, 0.12);
     padding: 24px;

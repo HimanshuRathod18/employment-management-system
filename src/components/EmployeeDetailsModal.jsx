@@ -30,12 +30,24 @@ const EmployeeDetailsModal = ({ employee }) => {
     [setWidth, setIsOpen]
   );
 
-  const handleShortList = () => {
+  const handleShortList = async () => {
+    setLoading(true);
+    setFlag(false);
+
+    await new Promise((resolve) => setTimeout(resolve, 1000));
+
     dispatch({
       type: DISPATCH_TYPE.ADD_TO_SHORTLISTED_EMPLOYEES,
       payload: employee,
     });
+
+    setLoading(false);
+    setFlag(true);
+    setTimeout(() => {
+      closeModal();
+    }, 1000);
   };
+
   return (
     <Fragment>
       <Button appearance="primary" onClick={() => setWidthAndOpen("large")}>
@@ -65,9 +77,19 @@ const EmployeeDetailsModal = ({ employee }) => {
               <Button appearance="subtle" onClick={closeModal}>
                 Cancel
               </Button>
-              <Button appearance="primary" onClick={handleShortList}>
-                Shortlist
-              </Button>
+              {loading ? (
+                <Button appearance="primary" isDisabled>
+                  <Spinner size="small" />
+                </Button>
+              ) : flag ? (
+                <Button appearance="success" onClick={() => closeModal}>
+                  Shortlisted
+                </Button>
+              ) : (
+                <Button appearance="primary" onClick={handleShortList}>
+                  Shortlist
+                </Button>
+              )}
             </ModalFooter>
           </Modal>
         )}

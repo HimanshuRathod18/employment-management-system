@@ -3,7 +3,7 @@ import DynamicTable from "@atlaskit/dynamic-table";
 import { head, rows } from "../utils/tableHelper";
 import EmptyState from "@atlaskit/empty-state";
 import Spinner from "@atlaskit/spinner";
-import { TableContainer } from "./styles";
+import { TableContainer, TableScrollWrapper } from "./styles";
 
 const EmployeeList = ({ userDetails }) => {
   const [users, setUsers] = useState([]);
@@ -18,7 +18,11 @@ const EmployeeList = ({ userDetails }) => {
     <TableContainer className="table-container">
       {loading ? (
         <div
-          style={{ display: "flex", justifyContent: "center", padding: "20px" }}
+          style={{
+            display: "flex",
+            justifyContent: "center",
+            padding: "20px",
+          }}
         >
           <Spinner size="medium" />
         </div>
@@ -28,17 +32,19 @@ const EmployeeList = ({ userDetails }) => {
           description="Try adjusting your filters or search criteria."
         />
       ) : (
-        <DynamicTable
-          head={head}
-          rows={rows(users)}
-          rowsPerPage={15}
-          defaultPage={1}
-          loadingSpinnerSize="medium"
-          testId="employee-table"
-          isLoading={false}
-          isFixedSize
-          highlightedRowIndex={-1}
-        />
+        <TableScrollWrapper>
+          <DynamicTable
+            head={head}
+            rows={rows(users)}
+            rowsPerPage={15}
+            defaultPage={1}
+            loadingSpinnerSize="medium"
+            testId="employee-table"
+            isLoading={false}
+            isFixedSize
+            highlightedRowIndex={-1}
+          />
+        </TableScrollWrapper>
       )}
     </TableContainer>
   );
