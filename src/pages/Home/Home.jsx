@@ -1,16 +1,16 @@
 import React, { useEffect, useState, useCallback } from "react";
-import { useEmployees } from "../../context/EmployeeContext";
 import { debounce } from "lodash";
+import { useNavigate } from "react-router-dom";
 import SearchIcon from "@atlaskit/icon/glyph/search";
 import Button from "@atlaskit/button/new";
-import Select from "@atlaskit/select";
+import { useEmployees } from "../../context/EmployeeContext";
 import { fetchUsers, searchUsers } from "../../api/users";
 import EmployeeList from "../../components/EmployeeList";
 import { StyledTextField } from "./styles";
 import FilterModal from "../../components/FilterModal";
 import SortEmployees from "../../components/SortEmployees";
 import { getSelectOptions, getFilteredUsers } from "../../utils/helper";
-import { useNavigate } from "react-router-dom";
+import { DISPATCH_TYPE, USER_ROLE } from "../../utils/constant";
 
 const Home = () => {
   const { state, dispatch } = useEmployees();
@@ -27,13 +27,13 @@ const Home = () => {
 
   useEffect(() => {
     fetchUsers().then((data) => {
-      dispatch({ type: "ALL_EMPLOYEES", payload: data });
+      dispatch({ type: DISPATCH_TYPE.ALL_EMPLOYEES, payload: data });
     });
   }, []);
 
   useEffect(() => {
     const filtered = getFilteredUsers(
-      allEmployees.filter((user) => user.role !== "admin"),
+      allEmployees.filter((user) => user.role !== USER_ROLE.ADMIN),
       filters
     );
     setUsers(filtered);
@@ -43,7 +43,7 @@ const Home = () => {
     debounce((value) => {
       searchUsers(value).then((data) => {
         const filtered = getFilteredUsers(
-          data.filter((user) => user.role !== "admin"),
+          data.filter((user) => user.role !== USER_ROLE.ADMIN),
           filters
         );
         setUsers(filtered);
@@ -58,7 +58,7 @@ const Home = () => {
       debouncedFetch(value);
     } else {
       const filtered = getFilteredUsers(
-        allEmployees.filter((user) => user.role !== "admin"),
+        allEmployees.filter((user) => user.role !== USER_ROLE.ADMIN),
         filters
       );
       setUsers(filtered);

@@ -1,4 +1,5 @@
 import React, { createContext, useReducer, useContext } from "react";
+import { DISPATCH_TYPE } from "../utils/constant";
 
 const initialState = {
   allEmployees: [],
@@ -7,13 +8,13 @@ const initialState = {
 
 function employeeReducer(state, action) {
   switch (action.type) {
-    case "ALL_EMPLOYEES":
+    case DISPATCH_TYPE.ALL_EMPLOYEES:
       return {
         ...state,
         allEmployees: action.payload,
       };
 
-    case "ADD_TO_SHORTLISTED_EMPLOYEES":
+    case DISPATCH_TYPE.ADD_TO_SHORTLISTED_EMPLOYEES:
       const exists = state.shortlistedEmployees.some(
         (emp) => emp.id === action.payload.id
       );
@@ -24,7 +25,7 @@ function employeeReducer(state, action) {
         shortlistedEmployees: [...state.shortlistedEmployees, action.payload],
       };
 
-    case "REMOVE_FROM_SHORTLIST":
+    case DISPATCH_TYPE.REMOVE_FROM_SHORTLIST:
       return {
         ...state,
         shortlistedEmployees: state.shortlistedEmployees.filter(

@@ -2,7 +2,6 @@ import { Label } from "@atlaskit/form";
 import {
   SectionTitle,
   Value,
-  ReadOnlyField,
   Row,
   SectionWrapper,
   StyledFieldDiv,

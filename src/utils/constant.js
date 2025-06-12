@@ -1,11 +1,15 @@
-const TABLE_HEADERS = [
-  "First name",
-  "Last name",
-  "Company",
-  "Blood group",
-  "Email",
-  "Phone number",
-  "",
+const USER_ROLE = { ADMIN: "admin" };
+
+const DISPATCH_TYPE = {
+  ALL_EMPLOYEES: "ALL_EMPLOYEES",
+  ADD_TO_SHORTLISTED_EMPLOYEES: "ADD_TO_SHORTLISTED_EMPLOYEES",
+  REMOVE_FROM_SHORTLIST: "REMOVE_FROM_SHORTLIST",
+};
+
+const SORT_OPTIONS = [
+  { label: "First Name", value: "firstName" },
+  { label: "Last Name", value: "lastName" },
+  { label: "Age", value: "age" },
 ];
 
-export { TABLE_HEADERS };
+export { USER_ROLE, DISPATCH_TYPE, SORT_OPTIONS };

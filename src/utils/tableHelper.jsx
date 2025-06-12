@@ -1,52 +1,14 @@
-import Avatar from "@atlaskit/avatar";
-// import StarStarredIcon from "@atlaskit/icon/core/star-starred";
-import { token } from "@atlaskit/tokens";
 import EmployeeDetailsModal from "../components/EmployeeDetailsModal";
-import { userDetails } from "./mock";
-
-//  function kebabCase(input) {
-//      return input.match(/[A-Z]{2,}(?=[A-Z][a-z]+[0-9]*|\b)|[A-Z]?[a-z]+[0-9]*|[A-Z]|[0-9]+/g)!
-//          .map((x) => x.toLowerCase())
-//          .join('-');
-//  }
-
-// function createKey(input) {
-//   return input ? input.replace(/^(the|a|an)/, "").replace(/\s/g, "") : input;
-// }
-
-//  function iterateThroughLorem(index: number) {
-//      return index > lorem.length ? index - lorem.length : index;
-//  }
-
-//  const nameWrapperStyles = css({
-//      display: 'flex',
-//      alignItems: 'center',
-//  });
-
-//  const NameWrapper: FC<{ children: ReactNode }> = ({ children }) => (
-//      <span css={nameWrapperStyles}>{children}</span>
-//  );
-
-//  const avatarWrapperStyles = css({
-//      marginInlineEnd: token('space.100'),
-//  });
-
-//  const AvatarWrapper: FC<{ children: ReactNode }> = ({ children }) => (
-//      // eslint-disable-next-line @atlaskit/design-system/use-primitives
-//      <div css={avatarWrapperStyles}>{children}</div>
-//  );
 
 const getCommonCells = (withWidth) => [
   {
     key: "firstName",
     content: "First Name",
-    isSortable: true,
     width: withWidth ? 8 : undefined,
   },
   {
     key: "lastName",
     content: "Last Name",
-    isSortable: true,
     width: withWidth ? 8 : undefined,
   },
   {
@@ -126,19 +88,3 @@ export const rows = (userDetails) =>
     isHighlighted: false,
     cells: createBaseCells(president, index),
   }));
-
-// export const visuallyRefreshedRows = userDetails.map((president, index) => ({
-//   key: kebabCase(president.name),
-//   isHighlighted: false,
-//   cells: [
-//     ...createBaseCells(president, index),
-//     {
-//       key: "Star",
-//       content: (
-//         <StarWrapper>
-//           <StarUnstarredIcon label="Unstarred" />
-//         </StarWrapper>
-//       ),
-//     },
-//   ],
-// }));

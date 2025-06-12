@@ -1,35 +1,32 @@
 import { useCallback, useState } from "react";
-
-// import { css, jsx } from "@compiled/react";
-import styled from "styled-components";
-import Button from "@atlaskit/button/new";
+// import styled from "styled-components";
 import { Box } from "@atlaskit/primitives/compiled";
 import Tabs, { Tab, TabList, TabPanel } from "@atlaskit/tabs";
-import { token } from "@atlaskit/tokens";
+// import { token } from "@atlaskit/tokens";
 import { getTabData } from "../utils/helper";
 import RenderEmployeeSections from "./RenderEmployeeSections";
 
-const StyledContainer = styled.div`
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-direction: column;
-  flex-grow: 1;
-  background-color: ${token("color.background.neutral")};
-  border-radius: 3px;
-  color: ${token("color.text.subtlest")};
-  font: ${token("font.heading.xxlarge")};
-  margin-block-end: ${token("space.100")};
-  margin-block-start: ${token("space.200")};
-  padding-block-end: ${token("space.400")};
-  padding-block-start: ${token("space.400")};
-  padding-inline-end: ${token("space.400")};
-  padding-inline-start: ${token("space.400")};
-`;
+// const StyledContainer = styled.div`
+//   display: flex;
+//   align-items: center;
+//   justify-content: center;
+//   flex-direction: column;
+//   flex-grow: 1;
+//   background-color: ${token("color.background.neutral")};
+//   border-radius: 3px;
+//   color: ${token("color.text.subtlest")};
+//   font: ${token("font.heading.xxlarge")};
+//   margin-block-end: ${token("space.100")};
+//   margin-block-start: ${token("space.200")};
+//   padding-block-end: ${token("space.400")};
+//   padding-block-start: ${token("space.400")};
+//   padding-inline-end: ${token("space.400")};
+//   padding-inline-start: ${token("space.400")};
+// `;
 
-export const Panel = ({ children, testId }) => (
-  <StyledContainer>{children}</StyledContainer>
-);
+// export const Panel = ({ children, testId }) => (
+//   <StyledContainer>{children}</StyledContainer>
+// );
 
 export default function EmployeeDetailsTab({ employeeDetails }) {
   const [selected, setSelected] = useState(0);
@@ -51,9 +48,7 @@ export default function EmployeeDetailsTab({ employeeDetails }) {
         </TabList>
         {tabs.map((tab) => (
           <TabPanel>
-            {/* <Panel> */}
             <RenderEmployeeSections data={tab.data} />
-            {/* </Panel> */}
           </TabPanel>
         ))}
       </Tabs>

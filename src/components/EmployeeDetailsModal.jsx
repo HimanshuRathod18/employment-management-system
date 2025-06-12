@@ -1,22 +1,19 @@
 import React, { Fragment, useCallback, useState } from "react";
-import { useNavigate } from "react-router-dom";
 import Button from "@atlaskit/button/new";
 import Modal, {
   ModalBody,
   ModalFooter,
   ModalHeader,
-  ModalTitle,
   ModalTransition,
 } from "@atlaskit/modal-dialog";
 import EmployeeDetailsTab from "./EmployeeDetailsTab";
 import { useEmployees } from "../context/EmployeeContext";
 import { StyledImage, StyledDiv } from "./styles";
+import { DISPATCH_TYPE } from "../utils/constant";
 
 const EmployeeDetailsModal = ({ employee }) => {
-  const { dispatch, state } = useEmployees();
-  const { shortlistedEmployees } = state;
+  const { dispatch } = useEmployees();
 
-  const navigate = useNavigate();
   const [isOpen, setIsOpen] = useState(false);
   const [width, setWidth] = useState("large");
 
@@ -30,9 +27,10 @@ const EmployeeDetailsModal = ({ employee }) => {
   );
 
   const handleShortList = () => {
-    // add employee ot shortlisted list
-    // closeModal();
-    dispatch({ type: "ADD_TO_SHORTLISTED_EMPLOYEES", payload: employee });
+    dispatch({
+      type: DISPATCH_TYPE.ADD_TO_SHORTLISTED_EMPLOYEES,
+      payload: employee,
+    });
   };
   return (
     <Fragment>

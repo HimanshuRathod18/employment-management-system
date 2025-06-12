@@ -1,6 +1,6 @@
-import React, { useState, useEffect, useCallback } from "react";
+import React, { useState, useEffect } from "react";
 import DynamicTable from "@atlaskit/dynamic-table";
-import { head, rows } from "../utils/sample-data";
+import { head, rows } from "../utils/tableHelper";
 
 const EmployeeList = ({ userDetails }) => {
   const [users, setUsers] = useState([]);
