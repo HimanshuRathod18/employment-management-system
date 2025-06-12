@@ -11,7 +11,7 @@ const getCommonCells = (withWidth) => [
   {
     key: "lastName",
     content: <Heading size="medium">Last Name</Heading>,
-    width: withWidth ? 8 : undefined,
+    width: withWidth ? 10 : undefined,
   },
   {
     key: "company",

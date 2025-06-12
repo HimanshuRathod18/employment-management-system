@@ -64,9 +64,18 @@ const StyledSelectWrapper = styled.div`
 `;
 
 const StyledRow = styled.div`
-  background-color: ${(props) => (props.even ? "#ffffff" : "#f4f5f7")};
-  padding: "8px 12px";
+  background-color: ${(props) => (props.even ? "#F0F4FF" : "#E2ECFD")};
+  padding: 6px;
+  width: 100%;
 `;
+
+const TableContainer = styled.div`
+  background-color: #f4f5f7;
+  padding: 24px;
+  border-radius: 8px;
+  box-shadow: 0 0 4px rgba(0, 0, 0, 0.1);
+`;
+
 export {
   SectionWrapper,
   SectionTitle,
@@ -78,4 +87,5 @@ export {
   StyledDiv,
   StyledSelectWrapper,
   StyledRow,
+  TableContainer,
 };

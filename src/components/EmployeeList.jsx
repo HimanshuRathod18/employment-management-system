@@ -1,16 +1,9 @@
 import React, { useState, useEffect } from "react";
 import DynamicTable from "@atlaskit/dynamic-table";
 import { head, rows } from "../utils/tableHelper";
-import styled from "styled-components";
 import EmptyState from "@atlaskit/empty-state";
 import Spinner from "@atlaskit/spinner";
-
-const TableContainer = styled.div`
-  background-color: #f4f5f7;
-  padding: 24px;
-  border-radius: 8px;
-  box-shadow: 0 0 4px rgba(0, 0, 0, 0.1);
-`;
+import { TableContainer } from "./styles";
 
 const EmployeeList = ({ userDetails }) => {
   const [users, setUsers] = useState([]);
@@ -22,7 +15,7 @@ const EmployeeList = ({ userDetails }) => {
   }, [userDetails]);
 
   return (
-    <TableContainer>
+    <TableContainer className="table-container">
       {loading ? (
         <div
           style={{ display: "flex", justifyContent: "center", padding: "20px" }}
