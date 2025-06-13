@@ -20,20 +20,16 @@ const selectStyles = {
     ...base,
     minHeight: "32px",
     height: "32px",
-  }),
-  valueContainer: (base) => ({
-    ...base,
-    height: "32px",
-    padding: "0 8px",
+    borderRadius: "4px",
   }),
   indicatorsContainer: (base) => ({
     ...base,
     height: "32px",
   }),
-  input: (base) => ({
+  valueContainer: (base) => ({
     ...base,
-    margin: 0,
-    padding: 0,
+    height: "32px",
+    padding: "2px 8px",
   }),
 };
 

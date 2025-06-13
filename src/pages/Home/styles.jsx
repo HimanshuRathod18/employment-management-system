@@ -16,20 +16,34 @@ const StyledTextInput = styled.div`
   width: 180px;
   min-width: 150px;
 `;
-
 const HeaderContainer = styled.div`
   display: flex;
-  justify-content: space-between;
-  align-items: center;
   flex-wrap: wrap;
-  gap: 12px;
+  justify-content: space-between;
+  gap: 8px;
   margin-bottom: 16px;
+
+  @media (max-width: 600px) {
+    flex-direction: column;
+    align-items: stretch;
+  }
 `;
 
 const LeftGroup = styled.div`
   display: flex;
-  gap: 12px;
+  flex-wrap: wrap;
+  gap: 8px;
   flex: 1;
+`;
+
+const RightGroup = styled.div`
+  display: flex;
+  justify-content: flex-end;
+
+  @media (max-width: 767px) {
+    justify-content: flex-end;
+    width: 100%;
+  }
 `;
 
 const StyledError = styled.div`
@@ -56,6 +70,7 @@ export {
   StyledTextField,
   HeaderContainer,
   LeftGroup,
+  RightGroup,
   StyledTextInput,
   StyledError,
   HeadingContainer,

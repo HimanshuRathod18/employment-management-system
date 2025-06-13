@@ -17,6 +17,7 @@ import {
   StyledError,
   HeadingContainer,
   SubTitle,
+  RightGroup,
 } from "./styles";
 import FilterModal from "../../components/FilterModal";
 import SortEmployees from "../../components/SortEmployees";
@@ -128,14 +129,13 @@ const Home = () => {
               onChange={handleSearchChange}
             />
           </StyledTextInput>
-
+          <SortEmployees users={users} onSortChange={handleSortedUsers} />
           <FilterModal
             options={{ genderOptions, bloodGroupOptions, universityOptions }}
             filterChange={handleApplyFilters}
           />
-          <SortEmployees users={users} onSortChange={handleSortedUsers} />
         </LeftGroup>
-        <div>
+        <RightGroup>
           <Button
             appearance="primary"
             onClick={handleNext}
@@ -144,7 +144,7 @@ const Home = () => {
           >
             Shortlisted Employees
           </Button>
-        </div>
+        </RightGroup>
       </HeaderContainer>
 
       <EmployeeList userDetails={users} />
